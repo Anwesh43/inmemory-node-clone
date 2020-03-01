@@ -6,7 +6,7 @@ class InMemoryDb {
         this.setDataMap = new Map()
     }
 
-    put(key, value) {
+    set(key, value) {
         this.dataMap.set(key, value)
     }
 
