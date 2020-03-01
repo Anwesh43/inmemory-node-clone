@@ -23,12 +23,12 @@ class InmemoryClient {
         this.socket.connect(this.port)
     }
 
-    write(obj) {
-        this.socket.write(Buffer.from(JSON.stringify()))
+    _write(obj) {
+        this.socket.write(Buffer.from(JSON.stringify(obj) + "\n"))
     }
 
     set(key, value) {
-        this.socket.write({command : 'set', key, value})
+        this._write({command : 'set', key, value})
     }
 
     get(key) {
@@ -38,7 +38,7 @@ class InmemoryClient {
                 resolve(data)
             }
             try {
-                this.socket.write({command : 'get', key})
+                this._write({command : 'get', key})
               } catch(err) {
                 reject(err)
             }
@@ -46,7 +46,7 @@ class InmemoryClient {
     }
 
     close() {
-        this.socket.close()
+        this.socket.end()
     }
 }
 
