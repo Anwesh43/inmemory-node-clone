@@ -1,0 +1,7 @@
+const inmemoryDb = require('./memdb')
+inmemoryDb.set('a', 10)
+inmemoryDb.set('b', 20)
+console.log(inmemoryDb.get('a'))
+inmemoryDb.ladd('k', 30)
+inmemoryDb.ladd('k', 10)
+console.log(inmemoryDb.lgetall('k'))
